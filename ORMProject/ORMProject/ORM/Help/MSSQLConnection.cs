@@ -7,17 +7,17 @@ using System.Data;
 
 namespace ORMProject.ORM.Help
 {
-    public class ConnectionHelp
+    public class MSSQLConnection
     {
         protected static string Connection;
         protected static SqlConnection Sql_Connection = null;
-        protected static SqlCommand Command = null;
-        public ConnectionHelp()
+        public static SqlCommand Command = null;
+        public MSSQLConnection()
         {
             //log init 
             Console.WriteLine("ORM Init");
         }
-        public ConnectionHelp(string Con_str)
+        public MSSQLConnection(string Con_str)
         {
             Connection = Con_str;
             Sql_Connection = new SqlConnection(Connection);
@@ -45,8 +45,20 @@ namespace ORMProject.ORM.Help
             //return datas.Tables[0];
             return datas;
         }
+        public static void Open()
+        {
+            if (!(Sql_Connection.State == ConnectionState.Open))
+            {
+                Sql_Connection.Open();
+            }
+        }
 
-
-
+        public static void Close()
+        {
+            if (!(Sql_Connection.State == ConnectionState.Closed))
+            {
+                Sql_Connection.Close();
+            }
+        }
     }
 }

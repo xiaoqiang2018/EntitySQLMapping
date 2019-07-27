@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMProject", "ORMProject\ORMProject.csproj", "{63616CB0-2F7E-4EE2-928C-C3F322829281}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMProject", "ORMProject\ORMProject.csproj", "{63616CB0-2F7E-4EE2-928C-C3F322829281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMConsole", "ORMConsole\ORMConsole.csproj", "{D786083B-99D4-4ADC-AB49-05EBEF7D756D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntitySQLMapping", "EntitySQLMapping\EntitySQLMapping.csproj", "{5DE53A6D-DD6C-43DC-918C-36D4B6278485}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{63616CB0-2F7E-4EE2-928C-C3F322829281}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63616CB0-2F7E-4EE2-928C-C3F322829281}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63616CB0-2F7E-4EE2-928C-C3F322829281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D786083B-99D4-4ADC-AB49-05EBEF7D756D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D786083B-99D4-4ADC-AB49-05EBEF7D756D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D786083B-99D4-4ADC-AB49-05EBEF7D756D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D786083B-99D4-4ADC-AB49-05EBEF7D756D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE53A6D-DD6C-43DC-918C-36D4B6278485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE53A6D-DD6C-43DC-918C-36D4B6278485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE53A6D-DD6C-43DC-918C-36D4B6278485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE53A6D-DD6C-43DC-918C-36D4B6278485}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

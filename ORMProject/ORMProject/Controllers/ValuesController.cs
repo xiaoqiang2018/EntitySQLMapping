@@ -21,6 +21,7 @@ namespace ORMProject.Controllers
         [HttpPost]
         public IActionResult AcioPostValue([FromForm]string a)
         {
+            
             return Json(a);
         }
         // GET values/getvalue

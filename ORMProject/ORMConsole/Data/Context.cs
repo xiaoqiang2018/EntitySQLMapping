@@ -30,6 +30,7 @@ namespace ORMConsole.Data
         public static Context Entity = new Context();
         //public List<shua_config> config_List = Entity.EntityData<shua_config>("shua_config");
         //public List<shua_pay> pay_List = Context.Entity.EntityData<shua_pay>("shua_pay");
+        
 
         public static List<shua_config> config
         {

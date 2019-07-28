@@ -11,6 +11,7 @@
 *修改人：郑伯强
 *描述：
 ************************************************************************************/
+using EntitySQLMapping.ORM.ObjectRelation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace ORMConsole.Model
     /// <summary>
     /// DOTO 实体中的主键 映射 表的主键 ???
     /// </summary>
-    public class Key : Attribute
-    {
+    //public class Key : Attribute
+    //{
 
-    }
+    //}
 }

@@ -32,17 +32,45 @@ namespace ORMConsole
 
             //List<shua_config> config_List = Context.Entity.EntityData<shua_config>("shua_config");
             //List<shua_pay>  pay_List = Context.Entity.EntityData<shua_pay>("shua_pay");
-            foreach (var value in Context.config)
+            #region 查询
             {
-                Console.WriteLine(value.k +"   "+value.v);
+
+            foreach (var value in Context.Entity.EntityData<shua_config>("shua_config"))
+            {
+                Console.WriteLine(value.k + "   " + value.v);
             }
-            //while (reader.Read())
-            //{
-            //   string k =  reader.GetString("k");
-            //   string v =  reader.GetString("v");
-            //}
-            Console.WriteLine("Test ORM Init ");
             Console.Read();
+            }
+            #endregion
+
+            #region 更新
+
+            shua_config config = new shua_config();
+            config.k = "version1";
+            config.v = "100861";
+            int result = Context.Entity.UpdateData<shua_config>(config);
+            Console.Read();
+            #endregion
+
+            #region 删除值
+
+            Context.Entity.RemoveData<shua_config>(
+                (shua_config config1) => {
+                    config1.k = "version1";
+                    return config1;
+                });
+
+            #endregion
+
+            #region 添加值
+            shua_config config_Add = new shua_config();
+            config_Add.k = "insert orm_k 1";
+            config_Add.v = "insert orm_v 1";
+            int ResultRow = Context.Entity.InsertData<shua_config>(config_Add);
+            Console.Read();
+            #endregion
+
+
         }
     }
 }

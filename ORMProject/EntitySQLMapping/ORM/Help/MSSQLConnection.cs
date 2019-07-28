@@ -27,6 +27,8 @@ namespace ORMProject.ORM.Help
         public static void SetConnection(string ConnectionStr)
         {
             Connection = ConnectionStr;
+            Sql_Connection = new SqlConnection(Connection);
+
         }
         public static SqlDataReader SqlDataReader(string CmdText)
         {

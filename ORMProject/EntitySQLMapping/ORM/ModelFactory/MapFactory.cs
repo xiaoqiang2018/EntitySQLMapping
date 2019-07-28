@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using EntitySQLMapping.ORM.ObjectRelation;
 using MySql.Data.MySqlClient;
 using ORMProject.ORM.config;
 using ORMProject.ORM.Help;
@@ -14,6 +15,27 @@ namespace ORMProject.ORM.ModelFactory
     public class MapFactory
     {
         protected static List<MapTable> MapTables = new List<MapTable>();
+        /// <summary>
+        /// 获取实体映射的表名
+        /// </summary>
+        /// <param name="EntityName">实体名称</param>
+        /// <returns></returns>
+        public static string SelectEntityTableName<T>(T Entity)
+        {
+            var EntityName = Entity.GetType().Name;
+            string Name = "";
+            foreach (MapTable EntityRelationalTableName in MapTables )
+            {
+                if (EntityRelationalTableName.EntityName == EntityName)
+                {
+                    Name = EntityRelationalTableName.TableName;
+                    break;
+                }
+            }
+            return Name;
+            
+        }
+
         /// <summary>
         /// 校验 表 与  实体 的 列是否一致
         /// </summary>
@@ -77,7 +99,10 @@ namespace ORMProject.ORM.ModelFactory
                         foreach (PropertyInfo info in Propertys)
                         {
                             String Name = info.Name.ToString();
-                            object Value = reader[Name];//值类型与引用类型存在拆装箱效率问题
+                            object Value = reader[Name];
+                            //值类型与引用类型存在拆装箱效率问题
+                            //这里需要校准数据库中的类型=>对reader[Name]中的类型进行判断和保存
+                            //在做对应的获取值，避免引用类型与值类型装换带来的内存消耗
                             info.SetValue(t, Value);
                         }
 
@@ -85,16 +110,75 @@ namespace ORMProject.ORM.ModelFactory
                         
                     }
                     reader.Close();
+                    break;
                 }
             }
             return result;
         }
-       
+       /// <summary>
+       /// 获取实体属性列表
+       /// </summary>
+       /// <typeparam name="T">实体类型</typeparam>
+       /// <param name="Entity">实体</param>
+       /// <param name="Key">实体主键</param>
+       /// <returns></returns>
+        public static List<KeyValue> GetEntityProperty<T>(T Entity,out string Key)
+        {
+            Key = "MapFactory.GetEntityProperty Error";
+            //ValueOfKey = "MapFactory.GetEntityProperty Error";
+            List<KeyValue> result = new List<KeyValue>();
+            Type t = Entity.GetType();
+            PropertyInfo[] Info = t.GetProperties();
+
+            object[] Attribute = null;
+
+            foreach (var i in Info)
+            {
+                if (Attribute == null)
+                {
+                    Attribute = i.GetCustomAttributes(typeof(KeyAttribute), false);
+
+                    if (Attribute.Length != 0)
+                    {
+                        Key = i.Name;
+                       // ValueOfKey = i.GetValue(Entity).ToString();
+
+                    }
+                    else
+                    {
+                        Key = "No Found  Primary Key,Please Use Key Attribute Decorate Entity Of Propery ";
+                        Attribute = null;
+                    }
+                }
+                string Value = null;
+                try
+                {
+                    Value = i.GetValue(Entity).ToString();
+                    result.Add(new KeyValue() { Key = i.Name, Value = Value });
+                }
+                catch
+                {
+                    Value = null;
+                    break;
+                }
+                //if (Key == i.Name)
+                //{
+                //    ValueOfKey = i.GetValue(Entity).ToString();
+                //}
+            }
+            return result;
+        }
+
     }
 
     public class MapTable
     {
         public string TableName { get; set; }
         public string EntityName { get; set; }
+    }
+    public class KeyValue
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

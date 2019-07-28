@@ -49,6 +49,7 @@
     <Compile Include="ORM\Help\MSSQLConnection.cs" />
     <Compile Include="ORM\Help\MySQLConnection.cs" />
     <Compile Include="ORM\ModelFactory\MapFactory.cs" />
+    <Compile Include="ORM\ObjectRelation\Key.cs" />
     <Compile Include="ORM\Server\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

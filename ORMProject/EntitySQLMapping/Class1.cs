@@ -8,6 +8,6 @@ namespace EntitySQLMapping
 {
     public class Class1
     {
-    }
+    }  
 }
   
